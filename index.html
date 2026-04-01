@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO & AI Visibility Report – Belgrade Language School</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3e;
+      --accent: #6c63ff;
+      --accent2: #00d4aa;
+      --red: #ff5c5c;
+      --yellow: #ffc94d;
+      --green: #4ade80;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --code-bg: #12151f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: linear-gradient(135deg, #1a1d27 0%, #12151f 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    header .label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    header h1 {
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    header .meta {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    header .meta a { color: var(--accent2); }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* Score Hero */
+    .score-hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .score-hero .score-number {
+      font-size: 80px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--yellow);
+    }
+    .score-hero .score-label {
+      font-size: 18px;
+      color: var(--muted);
+      margin: 8px 0 16px;
+    }
+    .score-hero .summary {
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* Category grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .cat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .cat-card .cat-score {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .cat-card .cat-name {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .cat-card .cat-rating {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    .rating-poor { background: rgba(255,201,77,0.15); color: var(--yellow); }
+    .rating-critical { background: rgba(255,92,92,0.15); color: var(--red); }
+    .rating-good { background: rgba(74,222,128,0.15); color: var(--green); }
+
+    /* Sections */
+    section { margin-bottom: 48px; }
+    section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Issue cards */
+    .issue-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .issue-card.critical { border-left: 4px solid var(--red); }
+    .issue-card.warning { border-left: 4px solid var(--yellow); }
+    .issue-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .issue-card p { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+    .issue-card .fix-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent2);
+      margin-bottom: 8px;
+      margin-top: 14px;
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      overflow-x: auto;
+      color: #a9b1d6;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    code { font-family: 'Fira Code', 'Cascadia Code', monospace; }
+
+    /* What's working */
+    .working-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 10px;
+    }
+    .working-list li {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .working-list li::before { content: '✅ '; }
+
+    /* Priority plan */
+    .priority-list { list-style: none; counter-reset: priority; }
+    .priority-list li {
+      counter-increment: priority;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px 18px 60px;
+      margin-bottom: 12px;
+      position: relative;
+      font-size: 15px;
+    }
+    .priority-list li::before {
+      content: counter(priority);
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--accent);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .priority-list li strong { color: var(--text); }
+    .priority-list li span { color: var(--muted); font-size: 14px; }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="label">SEO & AI Visibility Report</div>
+  <h1>Belgrade Language School</h1>
+  <div class="meta">
+    <a href="https://belgradelanguageschool.com" target="_blank">belgradelanguageschool.com</a> &nbsp;·&nbsp; April 1, 2026
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Score Hero -->
+  <div class="score-hero">
+    <div class="score-number">50</div>
+    <div class="score-label">/ 100 — Poor</div>
+    <p class="summary">
+      Belgrade Language School has solid foundations — credentialed teachers, an active website, and social media presence — but AI systems like ChatGPT, Perplexity, and Google AI Overviews would struggle to confidently cite or surface it. The core problems are no FAQ content, unconfirmed Open Graph tags, non-descriptive image alt text, zero external authority signals, and a meta description that undersells the school.
+    </p>
+  </div>
+
+  <!-- Category Scores -->
+  <div class="category-grid">
+    <div class="cat-card">
+      <div class="cat-score" style="color:var(--yellow)">55</div>
+      <div class="cat-name">Technical SEO</div>
+      <div class="cat-rating rating-poor">⚠️ Needs Work</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-score" style="color:var(--yellow)">50</div>
+      <div class="cat-name">Content & AI Visibility</div>
+      <div class="cat-rating rating-poor">⚠️ Poor</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-score" style="color:var(--red)">42</div>
+      <div class="cat-name">Authority Signals</div>
+      <div class="cat-rating rating-critical">❌ Critical</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-score" style="color:var(--yellow)">52</div>
+      <div class="cat-name">Performance</div>
+      <div class="cat-rating rating-poor">⚠️ Poor</div>
+    </div>
+  </div>
+
+  <!-- Critical Issues -->
+  <section>
+    <h2>❌ Critical Issues</h2>
+
+    <div class="issue-card critical">
+      <h3>❌ No FAQ or Q&A Content</h3>
+      <p><strong>Why this hurts AI visibility:</strong> AI systems (especially Google AI Overviews and Perplexity) preferentially cite pages that directly answer questions in a Q&A format. Without FAQ content, the site has no "answer-ready" text for AI to extract and quote when someone asks "How much does it cost to learn Serbian online?" or "What is the best Serbian language school?"</p>
+      <div class="fix-label">Fix</div>
+      <p>Add a FAQ section to the homepage and key service pages. Example:</p>
+      <pre><code>Q: How much do Serbian online lessons cost?
+A: Belgrade Language School offers private lessons starting from €X/hour, group courses from €X, and self-study courses from €X.
+
+Q: How long does it take to learn Serbian?
+A: Most students reach conversational Serbian in 3–6 months with regular lessons.
+
+Q: Do I need any prior knowledge of Serbian to start?
+A: No. We offer lessons for complete beginners through advanced speakers.</code></pre>
+      <p style="margin-top:12px">Also add FAQPage JSON-LD schema:</p>
+      <pre><code>{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "How much do Serbian lessons cost?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Our private lessons start from €X/hour..."
+    }
+  }]
+}</code></pre>
+    </div>
+
+    <div class="issue-card critical">
+      <h3>❌ Open Graph Tags Not Confirmed Present</h3>
+      <p><strong>Why this hurts AI visibility:</strong> Open Graph tags control how your site appears when shared on social media and are also read by AI crawlers to understand page identity. Without them, link previews are broken and AI tools get a weaker signal about what the page is.</p>
+      <div class="fix-label">Fix</div>
+      <pre><code>&lt;meta property="og:type" content="website" /&gt;
+&lt;meta property="og:title" content="Belgrade Language School | Learn Serbian Online" /&gt;
+&lt;meta property="og:description" content="The world's leading online Serbian language school. Private lessons, group courses, and self-study programs with university-educated native teachers." /&gt;
+&lt;meta property="og:image" content="https://belgradelanguageschool.com/wp-content/uploads/Serbian-Teacher.jpg" /&gt;
+&lt;meta property="og:url" content="https://belgradelanguageschool.com/" /&gt;
+&lt;meta property="og:site_name" content="Belgrade Language School" /&gt;</code></pre>
+    </div>
+
+    <div class="issue-card critical">
+      <h3>❌ Image Alt Tags Are Non-Descriptive</h3>
+      <p><strong>Why this hurts AI visibility:</strong> Images labeled "Home 1", "Home 2", "Home 3" tell AI systems and screen readers nothing. Google uses alt text as a content signal.</p>
+      <div class="fix-label">Fix</div>
+      <pre><code>&lt;!-- Before --&gt;
+&lt;img src="Serbian-Teacher.jpg" alt="Home 1"&gt;
+
+&lt;!-- After --&gt;
+&lt;img src="Serbian-Teacher.jpg" alt="Serbian language teacher giving an online lesson at Belgrade Language School"&gt;
+&lt;img src="Serbian-Group-Course.jpg" alt="Students in an online Serbian group course at Belgrade Language School"&gt;
+&lt;img src="Learning-Serbian-2.jpg" alt="Learning Serbian online with a professional tutor from Belgrade"&gt;</code></pre>
+    </div>
+
+    <div class="issue-card critical">
+      <h3>❌ Zero External Authority Signals</h3>
+      <p><strong>Why this hurts AI visibility:</strong> AI systems build confidence in a source by how often it appears in credible external contexts — press coverage, directory listings, academic references, travel blogs, expat forums. A site that exists only in isolation is less likely to be cited.</p>
+      <div class="fix-label">Quick Wins</div>
+      <p>1. Submit to language school directories: <strong>Languagebookings.com</strong>, <strong>Verbling</strong>, <strong>Italki</strong>, <strong>Preply</strong><br>
+      2. Create a <strong>Google Business Profile</strong> (even as an online business)<br>
+      3. Get listed in <strong>Wikidata</strong> as a language education organization<br>
+      4. Pitch a feature to expat blogs covering Serbia<br>
+      5. Add sameAs to your JSON-LD:</p>
+      <pre><code>"sameAs": [
+  "https://www.facebook.com/BelgradeLanguageSchool/",
+  "https://www.instagram.com/belgradelanguageschool/",
+  "https://www.linkedin.com/company/42867678/",
+  "https://www.youtube.com/channel/UC4A3ftYL_JmP5mug3eR1J6Q"
+]</code></pre>
+    </div>
+  </section>
+
+  <!-- Warnings -->
+  <section>
+    <h2>⚠️ Warnings</h2>
+
+    <div class="issue-card warning">
+      <h3>⚠️ Meta Description Is Weak and Outdated</h3>
+      <p>"Belgrade Language School is the <em>new</em> Serbian language School in Belgrade!" — the word "new" is stale (founded 2018/2020). "Unforgettable activities" is vague and doesn't tell AI or users anything specific.</p>
+      <div class="fix-label">Fix</div>
+      <pre><code>Belgrade Language School is the world's leading online Serbian language school, offering private lessons, group courses, and self-study programs with certified, university-educated native teachers. Join 1,000+ students learning Serbian from anywhere in the world.</code></pre>
+    </div>
+
+    <div class="issue-card warning">
+      <h3>⚠️ Title Tag Includes "| Home"</h3>
+      <p>"Belgrade Language School | Learn Serbian Online | Home" — the word "Home" wastes characters and is redundant.</p>
+      <div class="fix-label">Fix</div>
+      <pre><code>&lt;title&gt;Belgrade Language School | Learn Serbian Online with Native Teachers&lt;/title&gt;</code></pre>
+    </div>
+
+    <div class="issue-card warning">
+      <h3>⚠️ H1 Tag Is Lowercase and Generic</h3>
+      <p>The H1 "learn serbian online" is not capitalized and is generic without differentiating context.</p>
+      <div class="fix-label">Fix</div>
+      <pre><code>&lt;h1&gt;Learn Serbian Online with Professional Native Teachers&lt;/h1&gt;</code></pre>
+    </div>
+
+    <div class="issue-card warning">
+      <h3>⚠️ Canonical Tag Not Confirmed</h3>
+      <div class="fix-label">Fix</div>
+      <pre><code>&lt;link rel="canonical" href="https://belgradelanguageschool.com/" /&gt;</code></pre>
+    </div>
+
+    <div class="issue-card warning">
+      <h3>⚠️ No Phone Number on Site</h3>
+      <p>Add a WhatsApp or contact number to the footer and contact page.</p>
+      <div class="fix-label">Fix</div>
+      <pre><code>"telephone": "+381-XX-XXXXXXX"</code></pre>
+    </div>
+
+    <div class="issue-card warning">
+      <h3>⚠️ "Biggest Online Serbian School" Claim Has No Evidence</h3>
+      <p>AI systems won't quote unsubstantiated superlatives. Back it up with specifics.</p>
+      <div class="fix-label">Fix</div>
+      <p>Add: "Over X students from Y countries" or "X+ lessons delivered since 2020."</p>
+    </div>
+
+    <div class="issue-card warning">
+      <h3>⚠️ Heavy Page Script Load</h3>
+      <p>GTM, GA, Facebook Pixel, TikTok Analytics, Hotjar, WooCommerce, LearnDash, and Elementor all load on the homepage, hurting Core Web Vitals.</p>
+      <div class="fix-label">Fix</div>
+      <p>Delay non-critical scripts (Hotjar, TikTok Pixel) until after page load using <code>defer</code>.</p>
+    </div>
+  </section>
+
+  <!-- What's Working -->
+  <section>
+    <h2>✅ What's Working</h2>
+    <ul class="working-list">
+      <li>HTTPS enabled</li>
+      <li>Mobile viewport meta tag present</li>
+      <li>Sitemap exists (4 sub-sitemaps)</li>
+      <li>robots.txt with Sitemap directive</li>
+      <li>JSON-LD structured data present</li>
+      <li>Social profiles: Facebook, Instagram, YouTube, LinkedIn</li>
+      <li>About page with credentialed teacher bios</li>
+      <li>Clear mission and vision statements</li>
+      <li>Google Analytics + GTM tracking</li>
+      <li>Date signals in schema markup</li>
+      <li>HTML lang attribute set (en-US)</li>
+      <li>Email contact info present</li>
+    </ul>
+  </section>
+
+  <!-- Priority Action Plan -->
+  <section>
+    <h2>🎯 Priority Action Plan</h2>
+    <ol class="priority-list">
+      <li><strong>Add a FAQ section + FAQPage schema</strong> <br><span>Single biggest lever for appearing in AI-generated answers. Write 8–10 Q&As mirroring how people search.</span></li>
+      <li><strong>Rewrite the meta description</strong> <br><span>Specific, factual, with a concrete differentiator. This is what AI and Google quote directly in results.</span></li>
+      <li><strong>Get listed in external directories + earn one press mention</strong> <br><span>Wikidata, Google Business Profile, one language school directory, one expat blog feature.</span></li>
+      <li><strong>Fix all image alt tags</strong> <br><span>Quick win, high impact for both accessibility and search ranking.</span></li>
+      <li><strong>Add sameAs to JSON-LD + confirm Open Graph tags</strong> <br><span>Completes the structured data picture so AI systems can confidently map the school as a knowledge graph entity.</span></li>
+    </ol>
+  </section>
+
+</div>
+
+<footer>
+  Generated by <strong>SEO & AI Visibility Scanner</strong> · April 1, 2026
+</footer>
+
+</body>
+</html>
